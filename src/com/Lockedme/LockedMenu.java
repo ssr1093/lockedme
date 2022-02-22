@@ -43,14 +43,14 @@ private static void Secondmenu() {
 					
 	switch (ch) {
 	case 3:
-		Create.CreateFile();
+		CreatesOption.Create();
 		break;
 	case 4:
-		Delete.DeleteFile();
+		DeleteOption.DeleteFile();
 		System.out.println("Delete File");
 		break;
 	case 5:
-		Search.SearchFile();
+		SearchOption.SearchFile();
 		break;
 	case 6:
 //		go to menu

@@ -1,8 +1,8 @@
 package com.Lockedme;
 
-public class Search {
+public class DeleteOption {
 
-	public static void SearchFile() {
+	public static void DeleteFile() {
 		// TODO Auto-generated method stub
 		
 	}

@@ -19,9 +19,10 @@ public class SearchOption {
   
             // Linear search in the array
             for (int i = 0; i < files.length; i++) {
+            	System.out.println("Enter file name");
                 String filename =scanner.next( );
                 filename = files[i];
-                filename.
+              //  filename.
                 if (filename.equalsIgnoreCase(filename)) {
                     System.out.println(filename + " found");
                     flag = 1;

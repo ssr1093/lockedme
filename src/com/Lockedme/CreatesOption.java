@@ -1,6 +1,8 @@
 package com.Lockedme;
 
+import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -8,42 +10,51 @@ import java.nio.file.Paths;
 import java.util.Scanner;
 
 public class CreatesOption{
-	final static String filepath = "Resources";
+	final static String filepath = "Resources\\";
 	static Scanner scanner = new Scanner(System.in);
 
 	public static void Create() {
-		System.out.println("Do You want to Create User Folder? (Yes/No)");
+		System.out.println("Do You want to Create User Folder? (Y/N)");
 		String ch = scanner.next().toLowerCase();
 		
 		//scanner.nextLine();
-		if (ch.equals( "y || yes || ye")) { 
-			CreateFolder();
-			Createfile();
+		if (ch.equals( "y")) { 
+			System.out.print("Enter desired Folder name to Create Fodler");
+			CreatesOption createoption = new CreatesOption();
+			createoption.CreateFolder();
 			
-		}
-		else if ( ! (ch.equals("n || no"))) { 
-			Createfile();
+					}
+		else if ( ch.equals("n")) { 
+			CreatesOption createfile = new CreatesOption();
+			createfile.Createfile();
 		
 		}
 	
 	}
-	public static void CreateFolder() {
+	public void CreateFolder() {
 		{
-			
-			String FolderName = scanner.nextLine();
-			File file = new File(filepath + FolderName);
+			//String FolderName = scanner.nextLine();
+			File file = new File(filepath);
 
-			// If file doesn't exist, creates in the main folder
+			// If file doesn't exist, creates in the Resource folder
 			if (!file.exists()) {
-				file.mkdirs();
+				Boolean bool = file.mkdirs();
+				if(bool)
+				System.out.println("Folder Created Succesfully");
+				else {
+					System.out.println("Error Found");
+				}
 			}
+			
+			CreatesOption createfile = new CreatesOption();
+			createfile.Createfile();
 		}
 
 	}
-	public static void Createfile() {
-		
+	public void Createfile() {
+		System.out.println("Enter Filename to Create");
 		String fileToAdd = scanner .next();
-		Path pathToFile = Paths.get(filepath + fileToAdd);
+		Path pathToFile = Paths.get(filepath + fileToAdd+"\\");
 		try {
 			
 			Files.createDirectories(pathToFile.getParent());
@@ -52,24 +63,28 @@ public class CreatesOption{
 			System.out.println("Do You Want to Add Content to the File?(Y/N)");
 			String ch = scanner.next().toLowerCase();
 			if (ch.equals("y")) {
-				Writes();
+				Writes(fileToAdd);
 			}
 		}
 		catch (IOException e) {
 			
 			e.printStackTrace();
 		
-			scanner.close();
+			
 		}
 			
 		}
 	
-	public static void Writes() {
+	public static void Writes(String Filename) throws IOException {
 		System.out.println("\nInput content and press enter\n");
-		Scanner sc = new Scanner(System.in);
-		String content = sc .nextLine();
-//		file writing has to be updated
-//		Files.write(null, null, null);
-		sc.close();
-	}
+		String content = scanner.nextLine();
+		FileWriter writer = new FileWriter(filepath);  
+	    BufferedWriter buffer = new BufferedWriter(writer);  
+	    buffer.write(content);  
+	    buffer.close();  
+	    System.out.println("Success"); 
+		
+			}
+	 
+
 }

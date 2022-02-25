@@ -13,7 +13,7 @@ public class CreatesOption{
 	final static String filepath = "Resources\\";
 	static Scanner scanner = new Scanner(System.in);
 
-	public static void Create() {
+	public static LockedMenu Create() {
 		System.out.println("Do You want to Create User Folder? (Y/N)");
 		String ch = scanner.next().toLowerCase();
 		
@@ -29,7 +29,7 @@ public class CreatesOption{
 			createfile.Createfile();
 		
 		}
-	
+	return null;// returns to main menu
 	}
 	public void CreateFolder() {
 		{
@@ -85,6 +85,7 @@ public class CreatesOption{
 	    System.out.println("Success"); 
 		
 			}
+
 	 
 
 }

@@ -1,39 +1,51 @@
 package com.Lockedme;
 
-import java.io.IOException;
-import java.nio.file.*;
+import java.io.File;
 import java.util.Scanner;
 
 public class DeleteOption {
 	
-	public static void DeleteFile() {
-		
+	public static LockedMenu DeleteFile() {
+		final String filepath = "Resources\\";
 		Scanner scanner = new Scanner(System.in);
-		System.out.println("Enter Filename");
+		System.out.println("Enter desired file name to Delete");
 		String filename = scanner.next();
-		String filepath = "Resources\\"+ filename;
-		System.out.println("Please confirm the file to be deleted\n (Yes to confirm) (No to Cancel)");
+		try  
+		{   
+		System.out.println("Please Confirm to Delete(Enter Yes or No)!!");
 		String choice = scanner.next().toLowerCase();
-		if(choice == "yes") {
-			Path path =  Paths.get(filepath);
+		
+		do
+		{
+		if (choice.equals(("yes"))) {
+			    
+				File f= new File(filepath+filename);           //file to be delete  
+				if(f.delete())                      //returns Boolean value  
+				{  
+				System.out.println(f.getName() + "Succesfully deleted");   //getting and printing the file name  
+				}  
+				else  
+				{  
+				System.out.println("failed");  
+				}  
+		}
+		
+		}  
+		while(choice.equals("no")); {
+				System.out.println("Application terminated");//need to use the return method to main class
+			scanner.close();	
+//			System.exit(0);
 			
-			 try {
-				Files.deleteIfExists(path);
-				System.out.println("File Deleted Succesfully");
-			 }
-			 
-				
-			} 
-			catch (IOException e) {
-				
-				e.printStackTrace();
 			}
-			else if (choice.equals("no")
-					{
-				
-			}
-			 
-				scanner.close();
+		}
+		
+		catch(Exception e)  
+		{  
+		e.printStackTrace();  
+		
+		}
+		return null;//returns to locked menu
+		
 			
 		}
 

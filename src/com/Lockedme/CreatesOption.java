@@ -19,9 +19,8 @@ public class CreatesOption{
 		
 		//scanner.nextLine();
 		if (ch.equals( "y")) { 
-			System.out.print("Enter desired Folder name to Create Fodler");
-			CreatesOption createoption = new CreatesOption();
-			createoption.CreateFolder();
+			System.out.println("Enter desired Folder name to Create Fodler");
+			CreateFolder();
 			
 					}
 		else if ( ch.equals("n")) { 
@@ -31,7 +30,7 @@ public class CreatesOption{
 		}
 	return null;// returns to main menu
 	}
-	public void CreateFolder() {
+	public static void CreateFolder() {
 		{
 			//String FolderName = scanner.nextLine();
 			File file = new File(filepath);
@@ -44,10 +43,10 @@ public class CreatesOption{
 				else {
 					System.out.println("Error Found");
 				}
-			}
-			
 			CreatesOption createfile = new CreatesOption();
 			createfile.Createfile();
+			}
+			
 		}
 
 	}

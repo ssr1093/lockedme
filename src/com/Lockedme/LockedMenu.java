@@ -20,9 +20,9 @@ public static void main (String[] args) {
 			Secondmenu();
 			break;
 		case 0:
+			System.out.println("Thanks for using the Application");
 			System.exit(0);
 			obj.close();
-			System.out.println("Thanks for using the Application");
 			break;
 		default:
 			System.out.println("Please Enter Valid Option");

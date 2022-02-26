@@ -49,9 +49,8 @@ public class CreatesOption {
 			String content = scanner.next();
 			
 				FileWriter fw = new FileWriter(filepath+ "\\"+f);
-				for (int i = 0; i < content.length(); i++)
-	                fw.write(content.charAt(i));
-					fw.close();
+				fw.write(content);
+				fw.close();
 	            System.out.println("Successfully written");
 
 					}
@@ -75,9 +74,8 @@ public class CreatesOption {
 					String content = scanner.next();
 					try {
 						FileWriter fw = new FileWriter(filepath+ "\\"+f);
-						for (int i = 0; i < content.length(); i++)
-			                fw.write(content.charAt(i));
-							fw.close();
+						fw.write(content);
+						fw.close();
 			  
 			            System.out.println("Successfully written");
 
@@ -103,6 +101,7 @@ public class CreatesOption {
 	}
 	
 	}
+
 	
 }
 

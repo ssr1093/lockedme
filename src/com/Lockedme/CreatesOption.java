@@ -1,90 +1,109 @@
 package com.Lockedme;
 
-import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.Scanner;
 
-public class CreatesOption{
-	final static String filepath = "Resources\\";
+public class CreatesOption {
 	static Scanner scanner = new Scanner(System.in);
-
-	public static LockedMenu Create() {
-		System.out.println("Do You want to Create User Folder? (Y/N)");
-		String ch = scanner.next().toLowerCase();
-		
-		//scanner.nextLine();
-		if (ch.equals( "y")) { 
-			System.out.println("Enter desired Folder name to Create Fodler");
-			CreateFolder();
-			
-					}
-		else if ( ch.equals("n")) { 
-			CreatesOption createfile = new CreatesOption();
-			createfile.Createfile();
-		
-		}
-	return null;// returns to main menu
-	}
-	public static void CreateFolder() {
-		{
-			//String FolderName = scanner.nextLine();
-			File file = new File(filepath);
-
-			// If file doesn't exist, creates in the Resource folder
-			if (!file.exists()) {
-				Boolean bool = file.mkdirs();
-				if(bool)
-				System.out.println("Folder Created Succesfully");
-				else {
-					System.out.println("Error Found");
-				}
-			CreatesOption createfile = new CreatesOption();
-			createfile.Createfile();
-			}
-			
-		}
-
-	}
-	public void Createfile() {
-		System.out.println("Enter Filename to Create");
-		String fileToAdd = scanner .next();
-		Path pathToFile = Paths.get(filepath + fileToAdd+"\\");
-		try {
-			
-			Files.createDirectories(pathToFile.getParent());
-		 	Files.createFile(pathToFile);
-			System.out.println(fileToAdd + " created successfully");
-			System.out.println("Do You Want to Add Content to the File?(Y/N)");
-			String ch = scanner.next().toLowerCase();
-			if (ch.equals("y")) {
-				Writes(fileToAdd);
-			}
-		}
-		catch (IOException e) {
-			
-			e.printStackTrace();
-		
-			
-		}
-			
-		}
+	final static String filepath = "Resources\\";
 	
-	public static void Writes(String Filename) throws IOException {
-		System.out.println("\nInput content and press enter\n");
-		String content = scanner.nextLine();
-		FileWriter writer = new FileWriter(filepath);  
-	    BufferedWriter buffer = new BufferedWriter(writer);  
-	    buffer.write(content);  
-	    buffer.close();  
-	    System.out.println("Success"); 
-		
-			}
-
+	public static void Create() {
 	 
+	boolean success = false; 
+	System.out.println("Enter User Directory to create"); 
+	String dir =filepath+ scanner.nextLine(); // Creating new directory in Java, if it doesn't exists 
+	try 
+	{
+	File directory = new File(dir); 
+	if (directory.exists())
+		{ System.out.println("User Directory already exists ..."); 
+		} 
+	else 
+	{ 
+		System.out.println("User Directory not exists, creating now"); 
+		success = directory.mkdir(); 
+		if (success) 
+		{ 
+			System.out.printf("Successfully created new directory : %s%n", dir); 
+		}
+		else
+		{ 
+			System.out.printf("Failed to create new directory: %s%n", dir);
+		}
+		}
+	// Creating new file in Java, only if not exists 
+	System.out.println("Enter file name to be created "); 
+	String filename = directory+"\\" +scanner.nextLine();//Saves file in the created user Directory
+	File f = new File(filename);
+	
+	if (f.exists()) 
+	{ 
+		System.out.println("File already exists");
+		System.out.println("Do you want add any content to the File??(y or n)");
+		String ch =scanner.next().toLowerCase();
+		if (ch.equals("y")) {
+			System.out.println("Enter your content as Input");
+			//write(f); //if file exist, we can overwrite the content of the file
+			String content = scanner.next();
+			
+				FileWriter fw = new FileWriter(filepath+ "\\"+f);
+				for (int i = 0; i < content.length(); i++)
+	                fw.write(content.charAt(i));
+					fw.close();
+	            System.out.println("Successfully written");
 
+					}
+		
+			else if (ch.equals("n")){
+				System.out.println("Thanks for using Appliation");
+				System.exit(0);
+			}
+	}
+	else  { 
+		System.out.println("No such file exists, creating now"); 
+		success = f.createNewFile(); 
+			if (success) 
+			{
+				System.out.printf("Successfully created new file: %s%n ",f ); 
+				System.out.println(" Do you want to add content to the file?(Yes/No)");
+				String ch = scanner.next().toLowerCase();
+				if(ch.equals("y") ) {
+					System.out.println("Enter your content as Input");
+					//write(f);
+					String content = scanner.next();
+					try {
+						FileWriter fw = new FileWriter(filepath+ "\\"+f);
+						for (int i = 0; i < content.length(); i++)
+			                fw.write(content.charAt(i));
+							fw.close();
+			  
+			            System.out.println("Successfully written");
+
+					} catch (IOException e) {
+						
+						e.printStackTrace();
+					}
+				}
+				else if (ch.equals("n"))	{
+					System.out.println("Thanks for using Appliation");
+					System.exit(0);
+				}
+			}
+			else 
+			{
+				System.out.printf("Failed to create new file: %s%n", f); 
+				}
+			} 
+	}
+	catch (IOException e) {
+		e.printStackTrace();
+		
+	}
+	
+	}
+	
 }
+
+

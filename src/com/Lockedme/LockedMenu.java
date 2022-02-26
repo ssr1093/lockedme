@@ -57,8 +57,9 @@ private static void Secondmenu() {
 		System.out.println("to MainMenu");
 		return;
 	case 0:
-		System.exit(0);
+		
 		System.out.println("Thanks for using the Application");
+		System.exit(0);
 		obj.close();
 		break;
 	default:
